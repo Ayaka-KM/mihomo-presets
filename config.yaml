@@ -1,0 +1,46 @@
+# 从 OpenClash 提取预设、发布给裸 mihomo 使用的选择配置。
+# 改完推送到 main，工作流会立即重新生成并发布。
+
+# 预设的来源：OpenClash 官方仓库。dev 分支最先收到修复；想要更稳就改成 master。
+upstream:
+  repository: vernesong/OpenClash
+  ref: dev
+
+# 发布前用来校验生成结果的 mihomo：直接下载官方 release 的 linux-amd64-v1 版本。
+# latest 表示最新正式版；也可以写成具体版本号（如 v1.19.32），和路由器上的内核保持一致。
+validator:
+  repository: MetaCubeX/mihomo
+  release: latest
+
+# 规则集：mihomo 通过 rule-providers 远程引用，每天自动更新。
+# exclude 按整行精确匹配去掉上游条目，include 追加自己的条目。
+rules:
+  fake-ip-filter:          # 给 dns.fake-ip-filter 用（rule-set:），behavior: domain
+    enabled: true
+    exclude: []
+    include: []
+  localnetwork:            # 给 tun.route-exclude-address-set 用，behavior: ipcidr
+    enabled: true
+    exclude: []
+    include: []
+  bt-direct:               # BT/PT tracker 直连规则，behavior: classical
+    enabled: true
+    exclude: []
+    include: []
+  process-direct:          # 下载工具、其他代理程序按进程名直连；只对路由器本机进程有效，
+    enabled: false         # 且需要 find-process-mode 不为 off
+    exclude: []
+    include: []
+
+# 配置片段：mihomo 没有 include 机制，需要手动合并进自己的配置，变化会写进 CHANGELOG.md。
+fragments:
+  dns-servers: true        # OpenClash 预置的上游 DNS（默认启用的那组）及兜底值
+  fallback-filter: true    # dns.fallback-filter
+  sniffer: true            # 域名嗅探
+  hosts: true              # 路由器常见主机名
+  ntp: true                # 内核 NTP 对时
+  keep-alive: true         # TCP keep-alive 默认值
+  geox-url: true           # GEO 数据源
+  overwrite-modules:       # OpenClash 官方覆写模块（展开成普通配置）
+    enabled: true
+    exclude: []            # 不要的模块名，例如 [WiFi_Calling]
