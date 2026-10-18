@@ -1,0 +1,40 @@
+# 把 OpenClash 预设接入裸 mihomo 的示例：只列出相关部分，合并进你自己的配置
+# 规则集由 mihomo 每天自动更新；fragments/ 下的片段需要手动合并，变化见 CHANGELOG.md
+# 国内直连 raw.githubusercontent.com 可能不通：可以给每个 rule-provider 加 proxy: <你的策略组>，
+# 或把 url 换成 jsDelivr 镜像 https://testingcf.jsdelivr.net/gh/Ayaka-KM/mihomo-presets@dist/rules/<文件名>
+# tun.route-exclude-address-set 需要 tun 开启 auto-route 和 auto-redirect（nftables）；没开 TUN 时用规则里的那条即可
+# MATCH,PROXY 里的 PROXY 换成你自己的策略组
+
+rule-providers:
+  oc-fake-ip-filter:
+    type: http
+    behavior: domain
+    format: text
+    url: https://raw.githubusercontent.com/Ayaka-KM/mihomo-presets/dist/rules/fake-ip-filter.list
+    path: ./ruleset/oc-fake-ip-filter.list
+    interval: 86400
+  oc-localnetwork:
+    type: http
+    behavior: ipcidr
+    format: text
+    url: https://raw.githubusercontent.com/Ayaka-KM/mihomo-presets/dist/rules/localnetwork.list
+    path: ./ruleset/oc-localnetwork.list
+    interval: 86400
+  oc-bt-direct:
+    type: http
+    behavior: classical
+    format: text
+    url: https://raw.githubusercontent.com/Ayaka-KM/mihomo-presets/dist/rules/bt-direct.list
+    path: ./ruleset/oc-bt-direct.list
+    interval: 86400
+dns:
+  enhanced-mode: fake-ip
+  fake-ip-filter:
+  - rule-set:oc-fake-ip-filter
+tun:
+  route-exclude-address-set:
+  - oc-localnetwork
+rules:
+- RULE-SET,oc-localnetwork,DIRECT,no-resolve
+- RULE-SET,oc-bt-direct,DIRECT
+- MATCH,PROXY

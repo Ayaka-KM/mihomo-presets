@@ -1,0 +1,25 @@
+# OpenClash 官方覆写模块：WiFi_Calling
+# 来源：https://github.com/vernesong/OpenClash/blob/dev/luci-app-openclash/root/etc/openclash/overwrite/WiFi_Calling
+# 说明：WiFi Calling (VoWiFi): route carrier ePDG IKE/NAT-T traffic through a UDP-capable proxy group
+# 原注释：
+#   These rules match UDP ports 500/4500 and the ePDG domain; raw ESP (IP protocol 50) does not
+#   match the UDP port rules. Set WIFI_CALLING_PROXY to an existing UDP-capable proxy or group;
+#   an empty value does not disable the rules. ENABLE_UDP_PROXY controls non-TUN UDP TProxy, while
+#   STACK_TYPE only affects tun.stack when IPv4/IPv6 TUN or Mix mode enables it. CHINA_IP_ROUTE_PASS
+#   excludes resolved ePDG addresses from mainland bypass when dnsmasq fills the pass set and
+#   firewall DNS mode is not 2. The mips stack reassembles fragmented UDP for IPv4/IPv6; the system
+#   stack does not deliver fragmented datagrams to the UDP handler.
+# 合并方式（原模块用 OpenClash 的覆写操作符，这里已展开成普通配置）：
+#   rules：放到你已有列表的最前面（原写法 +rules）
+# 占位符 WIFI_CALLING_PROXY 已替换为默认值 DIRECT，按需改成你自己的策略组
+# 插件设置（[General]，是 OpenClash 自身的开关，裸核里没有，仅供参考）：
+#   ENABLE_UDP_PROXY = 1  ← OpenClash 非 TUN 模式的 UDP 转发开关，裸核用 TUN 时不需要
+#   STACK_TYPE = mips  ← 对应裸核的 tun.stack
+#   CHINA_IP_ROUTE_PASS = pub.3gppnetwork.org  ← 从「绕过大陆 IP」里排除的域名；裸核用 route-exclude-address-set 绕过大陆 IP 时要自己处理
+#   CHINA_IP6_ROUTE_PASS = pub.3gppnetwork.org  ← 同上（IPv6）
+# 由 mihomo-presets 工作流自动生成，请勿手改；按需取舍请改仓库默认分支上的 config.yaml
+
+rules:
+- AND,((NETWORK,udp),(DST-PORT,500)),DIRECT
+- AND,((NETWORK,udp),(DST-PORT,4500)),DIRECT
+- DOMAIN-SUFFIX,pub.3gppnetwork.org,DIRECT

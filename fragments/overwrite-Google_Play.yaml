@@ -1,0 +1,21 @@
+# OpenClash 官方覆写模块：Google_Play
+# 来源：https://github.com/vernesong/OpenClash/blob/dev/luci-app-openclash/root/etc/openclash/overwrite/Google_Play
+# 说明：Google Play fix: resolve Google China domains with overseas DNS so proxy IPs can reach them
+# 原注释：
+#   Google Play download/update fix: these domains are resolved to Google's China CDN IPs
+#   by China DNS servers, and those CDN IPs refuse connections from proxy (overseas) IPs.
+# 合并方式（原模块用 OpenClash 的覆写操作符，这里已展开成普通配置）：
+#   dns.nameserver-policy：合并进你已有的映射（原写法 nameserver-policy+）
+# 由 mihomo-presets 工作流自动生成，请勿手改；按需取舍请改仓库默认分支上的 config.yaml
+
+dns:
+  nameserver-policy:
+    +.services.googleapis.cn:
+    - https://8.8.8.8/dns-query#RULES
+    - https://dns.google/dns-query#RULES
+    +.googleapis.cn:
+    - https://8.8.8.8/dns-query#RULES
+    - https://dns.google/dns-query#RULES
+    +.xn--ngstr-lra8j.com:
+    - https://8.8.8.8/dns-query#RULES
+    - https://dns.google/dns-query#RULES

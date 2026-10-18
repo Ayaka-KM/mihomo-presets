@@ -1,0 +1,13 @@
+# OpenClash 预设：路由器常见主机名解析到路由器自身（yml_change.sh 每次启动都会加上）
+# 来源：https://github.com/vernesong/OpenClash/blob/dev/luci-app-openclash/root/usr/share/openclash/yml_change.sh
+# lan 是 mihomo 的特殊值，代表本机所有网卡的地址
+# OpenClash 还会动态加上 <系统主机名>.lan 和 <系统主机名>.<dnsmasq 域名>，请按你的路由器自行补充
+# 由 mihomo-presets 工作流自动生成，请勿手改；按需取舍请改仓库默认分支上的 config.yaml
+
+dns:
+  use-hosts: true
+hosts:
+  openwrt.lan: lan
+  immortalwrt.lan: lan
+  lede.lan: lan
+  router.lan: lan

@@ -1,0 +1,28 @@
+{
+  "upstream": {
+    "repository": "vernesong/OpenClash",
+    "ref": "dev",
+    "commit": "91d73707a6bcd0f8ec96a57095d72b1b4357cbe7",
+    "commit_date": "2026-10-18T22:23:37+08:00"
+  },
+  "generated_at": "2026-10-18T19:14:08+00:00",
+  "sources": {
+    "luci-app-openclash/root/etc/config/openclash": "e615c5e056c803ce0721b158441d51425832bd9ca78da1037f07ca77cf7fd8cc",
+    "luci-app-openclash/root/etc/openclash/custom/openclash_custom_fake_filter.list": "399b911ba83af5fe68c5abd95598cf575cbd8a769de686d423de4bdbefa60f04",
+    "luci-app-openclash/root/etc/openclash/custom/openclash_custom_fallback_filter.yaml": "be4aa1539424b70afaa32639528560bd4209724bd06ba385f93a668a3e739861",
+    "luci-app-openclash/root/etc/openclash/custom/openclash_custom_localnetwork_ipv4.list": "5cfd703c4a23c7108da5fc0c47b58dae021611ee5b6fadef7aacb61a48570dd4",
+    "luci-app-openclash/root/etc/openclash/custom/openclash_custom_localnetwork_ipv6.list": "87fd7f0bfd6d4add44c6d68fd473156b295417a0d071869d85a584cb89a7a1d8",
+    "luci-app-openclash/root/etc/openclash/custom/openclash_custom_sniffer.yaml": "c186251735e05c74abf472c97d63b1e5ef71cbf14199e3778b532e681998ae6a",
+    "luci-app-openclash/root/etc/openclash/overwrite/Google_Play": "aa0e72abf5f6f1d6bf9cb38a8c586fe2bb38eca0d10944b321f3fb8982480f8b",
+    "luci-app-openclash/root/etc/openclash/overwrite/Tailscale": "906ad22722a51e914bb29a8407ab6b965bd4ced33920b4eabad7f0cf20bb0113",
+    "luci-app-openclash/root/etc/openclash/overwrite/WiFi_Calling": "aa21917c19ad2af744ff96ca897d27dc8daa212d39afb1ecde14e4b1cf9afe0e",
+    "luci-app-openclash/root/etc/openclash/overwrite/default": "6b97aa6bb9b3e8665ea1fb7b8e43a776465fad9adedcf2d815223bd202f9b84a",
+    "luci-app-openclash/root/usr/share/openclash/yml_change.sh": "042d5fbdad8fc573a131a1229b3845b94cb3f97f38d6d1bebe5f193cab3e33db",
+    "luci-app-openclash/root/usr/share/openclash/yml_rules_change.sh": "8f6db5260934e980f3b244fee79e5e871e7dcc2bd839a4d1651b206cc63bd6b9"
+  },
+  "rule_sets": {
+    "fake-ip-filter": 142,
+    "localnetwork": 23,
+    "bt-direct": 27
+  }
+}

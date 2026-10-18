@@ -1,0 +1,11 @@
+# OpenClash 预设：内核 NTP 对时（配置里没写的项由 OpenClash 补上）
+# 来源：https://github.com/vernesong/OpenClash/blob/dev/luci-app-openclash/root/usr/share/openclash/yml_change.sh
+# 路由器多半没有硬件时钟，时间不准时 TLS、VMess 等协议会连不上；interval 单位是分钟，write-to-system 需要 root 权限
+# 由 mihomo-presets 工作流自动生成，请勿手改；按需取舍请改仓库默认分支上的 config.yaml
+
+ntp:
+  enable: true
+  server: time.apple.com
+  port: 123
+  interval: 30
+  write-to-system: true

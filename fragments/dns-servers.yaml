@@ -1,0 +1,57 @@
+# OpenClash 预设：上游 DNS（覆写设置 → DNS →「自定义上游 DNS 服务器」默认勾选的那组）
+# 来源：https://github.com/vernesong/OpenClash/blob/dev/luci-app-openclash/root/etc/config/openclash（dns_servers 段）
+# 来源：https://github.com/vernesong/OpenClash/blob/dev/luci-app-openclash/root/usr/share/openclash/yml_change.sh（兜底逻辑）
+# OpenClash 只在开启「自定义上游 DNS 服务器」时才用这组替换配置里的 DNS；其余内置备选和兜底逻辑列在文末
+# 由 mihomo-presets 工作流自动生成，请勿手改；按需取舍请改仓库默认分支上的 config.yaml
+
+dns:
+  default-nameserver:
+  - 114.114.114.114
+  - 119.29.29.29
+  - 223.5.5.5
+  nameserver:
+  - 114.114.114.114
+  - 119.29.29.29
+  - https://doh.pub/dns-query
+  - https://dns.alidns.com/dns-query
+  fallback:
+  - https://dns.google/dns-query
+  - https://dns.cloudflare.com/dns-query
+
+# 内置备选（默认未启用）：
+#   nameserver: 119.28.28.28
+#   nameserver: 223.5.5.5
+#   fallback: 9.9.9.9
+#   fallback: 149.112.112.112
+#   fallback: [2620:fe::fe]
+#   fallback: [2620:fe::9]
+#   fallback: 8.8.8.8
+#   fallback: 8.8.4.4
+#   fallback: [2001:4860:4860::8888]
+#   fallback: [2001:4860:4860::8844]
+#   fallback: [2001:da8::666]
+#   fallback: tls://dns.quad9.net
+#   fallback: tls://dns.google
+#   fallback: tls://1.1.1.1
+#   fallback: tls://jp.tiar.app
+#   fallback: tls://dot.tiar.app
+#   fallback: https://dns.quad9.net/dns-query
+#   fallback: https://1.1.1.1/dns-query
+#   fallback: https://public.dns.iij.jp/dns-query
+#   fallback: https://jp.tiar.app/dns-query
+#   fallback: https://jp.tiarap.org/dns-query
+#   fallback: https://doh.dnslify.com/dns-query
+#   fallback: https://dns.twnic.tw/dns-query
+#   fallback: https://dns.oszx.co/dns-query
+#   fallback: https://doh.applied-privacy.net/query
+#   fallback: https://dnsforge.de/dns-query
+#   fallback: https://doh.ffmuc.net/dns-query
+#   fallback: https://doh.mullvad.net/dns-query
+#
+# OpenClash 的兜底逻辑（yml_change.sh）：
+#   nameserver 为空时补上：114.114.114.114, 119.29.29.29, 8.8.8.8, 1.1.1.1
+#     同时 fallback 为空时补上：https://dns.cloudflare.com/dns-query, https://dns.google/dns-query
+#   default-nameserver 写了但为空时补上：114.114.114.114, 119.29.29.29, 8.8.8.8, 1.1.1.1
+#   开启 respect-rules，或 nameserver 全部走代理时，自动设置 proxy-server-nameserver
+#     （避免节点域名解析回环）为：114.114.114.114, 119.29.29.29, 8.8.8.8, 1.1.1.1
+#   Dnsmasq 转发模式下删掉 system 上游（会造成 DNS 回环）

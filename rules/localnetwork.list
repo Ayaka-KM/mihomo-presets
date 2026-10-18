@@ -1,0 +1,54 @@
+# OpenClash 预设：本地网络绕过（发往这些地址的流量不走代理）
+# 来源：https://github.com/vernesong/OpenClash/blob/dev/luci-app-openclash/root/etc/openclash/custom/openclash_custom_localnetwork_ipv4.list
+# 来源：https://github.com/vernesong/OpenClash/blob/dev/luci-app-openclash/root/etc/openclash/custom/openclash_custom_localnetwork_ipv6.list
+# behavior: ipcidr，format: text；在 tun.route-exclude-address-set 里引用，或写成 RULE-SET,oc-localnetwork,DIRECT,no-resolve
+# 由 mihomo-presets 工作流自动生成，请勿手改；按需取舍请改仓库默认分支上的 config.yaml
+
+# IPv4
+# this network
+0.0.0.0/8
+# private
+10.0.0.0/8
+# shared address space (CGNAT, used by Tailscale)
+100.64.0.0/10
+# loopback
+127.0.0.0/8
+# link-local
+169.254.0.0/16
+# private
+172.16.0.0/12
+# private
+192.168.0.0/16
+# multicast
+224.0.0.0/4
+# reserved
+240.0.0.0/4
+# IPv6
+# unspecified
+::/128
+# loopback
+::1/128
+# IPv4-mapped
+::ffff:0:0/96
+# IPv4-translated (SIIT)
+::ffff:0:0:0/96
+# NAT64 well-known prefix
+64:ff9b::/96
+# discard-only
+100::/64
+# Teredo
+2001::/32
+# ORCHIDv2
+2001:20::/28
+# documentation
+2001:db8::/32
+# 6to4
+2002::/16
+# unique local (ULA, includes fd00::/8)
+fc00::/7
+# Tailscale
+fd7a:115c:a1e0::/48
+# link-local
+fe80::/10
+# multicast
+ff00::/8

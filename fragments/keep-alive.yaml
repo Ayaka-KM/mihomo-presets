@@ -1,0 +1,6 @@
+# OpenClash 预设：TCP keep-alive（配置里两项都没写时由 OpenClash 补上，单位秒）
+# 来源：https://github.com/vernesong/OpenClash/blob/dev/luci-app-openclash/root/usr/share/openclash/yml_change.sh
+# 由 mihomo-presets 工作流自动生成，请勿手改；按需取舍请改仓库默认分支上的 config.yaml
+
+keep-alive-interval: 15
+keep-alive-idle: 600
