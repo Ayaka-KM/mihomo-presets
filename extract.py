@@ -38,6 +38,7 @@ SOURCES = {
     'uci': f'{ROOT}/etc/config/openclash',
     'yml-change': f'{ROOT}/usr/share/openclash/yml_change.sh',
     'yml-rules-change': f'{ROOT}/usr/share/openclash/yml_rules_change.sh',
+    'license': 'LICENSE',
 }
 OVERWRITE_DIR = f'{ROOT}/etc/openclash/overwrite'
 # Not a preset: validate.py loads it so that fallback-filter's geoip check works offline.
@@ -797,6 +798,9 @@ def build_readme(repo, branch, default_branch, upstream, rule_sets, fragments):
     lines += ['', '## 配置片段（需要手动合并）', '', '| 文件 | 内容 |', '|---|---|']
     for path, title in fragments.items():
         lines.append(f'| [`{path}`]({path}) | {title} |')
+    lines += ['', '## 许可', '',
+              f'规则集和配置片段提取自 [{upstream["repository"]}](https://github.com/{upstream["repository"]})，'
+              '沿用其许可证，原文见 [`LICENSE`](LICENSE)。']
     return '\n'.join(lines) + '\n'
 
 
@@ -1021,6 +1025,10 @@ def cmd_build(args):
     for rel, text in outputs.items():
         if rel.endswith('.yaml') and not isinstance(yaml.safe_load(text), dict):
             raise ExtractError(f'{rel}：生成的 YAML 不是映射')
+
+    # The rule-sets and fragments are portions of OpenClash, its license travels with them.
+    outputs['LICENSE'] = read(upstream_dir, SOURCES['license'])
+    used_sources.add(SOURCES['license'])
 
     repo, branch = args.publish_repo, args.publish_branch
     outputs['config-example.yaml'] = build_example(repo, branch, list(rule_counts), inline_filters)

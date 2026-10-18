@@ -30,6 +30,7 @@ OpenClash 根据多年来大量 issue 积累了很多"不踩坑想不到"的预�
 | `fragments/geox-url.yaml` | `etc/config/openclash` 的 GEO 数据源 | 手动合并 |
 | `fragments/overwrite-*.yaml` | `etc/openclash/overwrite/*`（官方覆写模块） | 手动合并；OpenClash 的覆写操作符已展开成普通配置，文件头写明了合并方式 |
 | `config-example.yaml` | — | 接入示例，里面是本仓库的实际地址 |
+| `LICENSE` | `LICENSE` | OpenClash 的许可证原文（MIT）：规则集和片段都摘自 OpenClash，转载时要附上它的版权声明 |
 
 规则集是变化最频繁、条目最多的部分，交给 mihomo 自己定时拉取。片段很少变化，而 mihomo 没有 include 机制，所以需要手动合并；有变化时 `CHANGELOG.md` 会给出 diff。
 
