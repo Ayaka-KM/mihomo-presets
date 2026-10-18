@@ -24,3 +24,7 @@
 | [`fragments/overwrite-Google_Play.yaml`](fragments/overwrite-Google_Play.yaml) | 官方覆写模块 Google_Play |
 | [`fragments/overwrite-Tailscale.yaml`](fragments/overwrite-Tailscale.yaml) | 官方覆写模块 Tailscale |
 | [`fragments/overwrite-WiFi_Calling.yaml`](fragments/overwrite-WiFi_Calling.yaml) | 官方覆写模块 WiFi_Calling |
+
+## 许可
+
+规则集和配置片段提取自 [vernesong/OpenClash](https://github.com/vernesong/OpenClash)，沿用其许可证，原文见 [`LICENSE`](LICENSE)。

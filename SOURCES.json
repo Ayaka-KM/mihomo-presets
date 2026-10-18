@@ -5,8 +5,9 @@
     "commit": "91d73707a6bcd0f8ec96a57095d72b1b4357cbe7",
     "commit_date": "2026-10-18T22:23:37+08:00"
   },
-  "generated_at": "2026-10-18T19:14:08+00:00",
+  "generated_at": "2026-10-18T19:30:49+00:00",
   "sources": {
+    "LICENSE": "bf598f1d704d1a9adbef8eb382b63aee036b500ad11e673f6e5f9e15dda7885d",
     "luci-app-openclash/root/etc/config/openclash": "e615c5e056c803ce0721b158441d51425832bd9ca78da1037f07ca77cf7fd8cc",
     "luci-app-openclash/root/etc/openclash/custom/openclash_custom_fake_filter.list": "399b911ba83af5fe68c5abd95598cf575cbd8a769de686d423de4bdbefa60f04",
     "luci-app-openclash/root/etc/openclash/custom/openclash_custom_fallback_filter.yaml": "be4aa1539424b70afaa32639528560bd4209724bd06ba385f93a668a3e739861",
