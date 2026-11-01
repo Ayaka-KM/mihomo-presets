@@ -1,5 +1,21 @@
 # 变化记录
 
+## 2026-11-02 03:54（北京时间）
+
+上游 [vernesong/OpenClash@dev](https://github.com/vernesong/OpenClash/tree/dev)：[`91d7370`](https://github.com/vernesong/OpenClash/commit/91d73707a6bcd0f8ec96a57095d72b1b4357cbe7) → [`4e668a0`](https://github.com/vernesong/OpenClash/commit/4e668a098f061a936897dd89226b2ae03d0c2444)
+
+### 上游相关提交
+
+- [`4e668a0`](https://github.com/vernesong/OpenClash/commit/4e668a098f061a936897dd89226b2ae03d0c2444) 2026-11-02 chore: refine
+- [`19d5e86`](https://github.com/vernesong/OpenClash/commit/19d5e86908dd220617e23f64870b61aba8787777) 2026-11-02 chore: add BT_PT_Download module
+- [`73f3abd`](https://github.com/vernesong/OpenClash/commit/73f3abdb8d4ef46ea939b1b9c730f13d3e800d5b) 2026-10-26 chore: bugs fix
+- [`ae9369c`](https://github.com/vernesong/OpenClash/commit/ae9369c8cd711dc9e439a37f6f316bed01242b32) 2026-10-20 chore: config subscribe config option
+
+### 产出变化
+
+- `README.md`：随上面的变化重新生成
+- `fragments/overwrite-BT_PT_Download.yaml`：新增文件
+
 ## 2026-10-19 03:30（北京时间）
 
 上游 [vernesong/OpenClash@dev](https://github.com/vernesong/OpenClash/tree/dev)：[`91d7370`](https://github.com/vernesong/OpenClash/commit/91d73707a6bcd0f8ec96a57095d72b1b4357cbe7)

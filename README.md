@@ -21,6 +21,7 @@
 | [`fragments/ntp.yaml`](fragments/ntp.yaml) | 内核 NTP 对时 |
 | [`fragments/keep-alive.yaml`](fragments/keep-alive.yaml) | TCP keep-alive |
 | [`fragments/geox-url.yaml`](fragments/geox-url.yaml) | GEO 数据源 |
+| [`fragments/overwrite-BT_PT_Download.yaml`](fragments/overwrite-BT_PT_Download.yaml) | 官方覆写模块 BT_PT_Download |
 | [`fragments/overwrite-Google_Play.yaml`](fragments/overwrite-Google_Play.yaml) | 官方覆写模块 Google_Play |
 | [`fragments/overwrite-Tailscale.yaml`](fragments/overwrite-Tailscale.yaml) | 官方覆写模块 Tailscale |
 | [`fragments/overwrite-WiFi_Calling.yaml`](fragments/overwrite-WiFi_Calling.yaml) | 官方覆写模块 WiFi_Calling |

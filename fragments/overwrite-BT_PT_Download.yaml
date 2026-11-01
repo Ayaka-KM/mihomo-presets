@@ -1,0 +1,46 @@
+# OpenClash 官方覆写模块：BT_PT_Download
+# 来源：https://github.com/vernesong/OpenClash/blob/dev/luci-app-openclash/root/etc/openclash/overwrite/BT_PT_Download
+# 说明：BT/PT downloads: redir-host mode, only proxy common ports, keep trackers and peers direct
+# 合并方式（原模块用 OpenClash 的覆写操作符，这里已展开成普通配置）：
+#   rules：放到你已有列表的最前面（原写法 +rules）
+#   rules：追加到你已有列表的末尾（原写法 rules+）
+#   rules：原写法 rules* 是批量修改操作，没法变成静态片段，已跳过
+# 占位符 PT_SITE 已替换为默认值 your-pt-site.invalid，按需改成你自己的策略组
+# 插件设置（[General]，是 OpenClash 自身的开关，裸核里没有，仅供参考）：
+#   EN_MODE = redir-host
+#   COMMON_PORTS = 21 22 23 53 80 123 143 194 443 465 587 853 993 995 998 2052 2053 2082 2083 2086 2095 2096 2197 5222 5223 5228 5229 5230 8080 8443 8880 8888 8889
+# 由 mihomo-presets 工作流自动生成，请勿手改；按需取舍请改仓库默认分支上的 config.yaml
+
+rules:
+- GEOSITE,category-public-tracker,DIRECT
+- GEOSITE,category-pt,DIRECT
+- DOMAIN,004430.xyz,DIRECT
+- DOMAIN,1.tracker.eu.org,DIRECT
+- DOMAIN,gargoyleperch.de,DIRECT
+- DOMAIN,ht.therarbg.to,DIRECT
+- DOMAIN,open.ftorrent.com,DIRECT
+- DOMAIN,tr.abiir.top,DIRECT
+- DOMAIN,tracker.7471.top,DIRECT
+- DOMAIN,tracker.kuroy.me,DIRECT
+- DOMAIN,tracker.midnightprogrammer.net,DIRECT
+- DOMAIN,tracker.nekomi.cn,DIRECT
+- DOMAIN,tracker.openwebtorrent.com,DIRECT
+- DOMAIN,tracker.qingwapt.org,DIRECT
+- DOMAIN,tracker.torrents.observer,DIRECT
+- DOMAIN,tracker.xn--djrq4gl4hvoi.top,DIRECT
+- DOMAIN,tracker.yume-hatsuyuki.moe,DIRECT
+- DOMAIN,tracker.zhuqiy.dgj055.icu,DIRECT
+- DOMAIN,www.wareztorrent.com,DIRECT
+- DOMAIN-SUFFIX,your-pt-site.invalid,DIRECT
+- DOMAIN-SUFFIX,dht.libtorrent.org,DIRECT
+- DOMAIN-SUFFIX,dht.transmissionbt.com,DIRECT
+- DOMAIN-SUFFIX,router.bittorrent.com,DIRECT
+- DOMAIN-SUFFIX,router.utorrent.com,DIRECT
+- DOMAIN-SUFFIX,router.bt.ouinet.work,DIRECT
+- DOMAIN-SUFFIX,dht.aelitis.com,DIRECT
+- PROCESS-NAME,transmission-daemon,DIRECT
+- PROCESS-NAME,qbittorrent-nox,DIRECT
+- PROCESS-NAME,aria2c,DIRECT
+- PROCESS-NAME,deluged,DIRECT
+- PROCESS-NAME,rtorrent,DIRECT
+- MATCH,DIRECT
