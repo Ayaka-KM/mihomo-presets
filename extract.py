@@ -96,6 +96,8 @@ DNS_GROUPS = [
 MODULE_META_RE = re.compile(r'^#!\s*([A-Za-z_]+)\s*[=:]\s*(.*)$')
 SECTION_RE = re.compile(r'^\[([A-Za-z0-9_-]+)\]')
 PLACEHOLDER_RE = re.compile(r'\$\{([A-Za-z_][A-Za-z0-9_]*)(?::-([^}]*))?\}')
+# What may follow a rule's policy, as in IP-CIDR,10.0.0.0/8,DIRECT,no-resolve.
+RULE_PARAMS_RE = re.compile(r'(?:\s*,\s*(?:no-resolve|src))*\s*')
 SUFFIX_OPS = {'+': 'append', '-': 'delete', '!': 'force', '*': 'batch'}
 GENERAL_HINTS = {
     'STACK_TYPE': '对应裸核的 tun.stack',
@@ -671,18 +673,24 @@ def translate_overwrite(data):
     return walk(data, []), notes, skipped
 
 
-def substitute(node, defaults, found):
+def substitute(node, defaults, found, in_rules=False):
+    """Fill in ${NAME} and ${NAME:-default}. found maps each name to [value, uses]: 'policy'
+    where it is a rule's policy (${WIFI_CALLING_PROXY:-DIRECT}), 'value' anywhere else,
+    such as the domain in DOMAIN-SUFFIX,${PT_SITE},DIRECT."""
     if isinstance(node, str):
         def replace(match):
             name, inline_default = match.group(1), match.group(2)
             value = inline_default if inline_default is not None else defaults.get(name)
-            found.setdefault(name, value)
+            policy = (in_rules and node[:match.start()].rstrip().endswith(',')
+                      and RULE_PARAMS_RE.fullmatch(node[match.end():]))
+            found.setdefault(name, [value, set()])[1].add('policy' if policy else 'value')
             return value if value is not None else match.group(0)
         return PLACEHOLDER_RE.sub(replace, node)
     if isinstance(node, list):
-        return [substitute(item, defaults, found) for item in node]
+        return [substitute(item, defaults, found, in_rules) for item in node]
     if isinstance(node, dict):
-        return {substitute(key, defaults, found): substitute(value, defaults, found) for key, value in node.items()}
+        return {substitute(key, defaults, found): substitute(value, defaults, found, key == 'rules')
+                for key, value in node.items()}
     return node
 
 
@@ -722,11 +730,12 @@ def build_module(upstream, upstream_dir, name):
     head += [f'  {describe_op(*note)}' for note in notes] or ['  直接合并进你的配置']
     for where, raw_key, op in skipped:
         head.append(f'  {where}：原写法 {raw_key} 是{"删除" if op == "delete" else "批量修改"}操作，没法变成静态片段，已跳过')
-    for var, value in placeholders.items():
+    for var, (value, uses) in placeholders.items():
+        what = '策略组' if uses == {'policy'} else '值'
         if value is None:
-            head.append(f'占位符 ${{{var}}} 保留原样，合并前要换成你自己的值')
+            head.append(f'占位符 ${{{var}}} 保留原样，合并前要换成你自己的{what}')
         else:
-            head.append(f'占位符 {var} 已替换为默认值 {value}，按需改成你自己的策略组')
+            head.append(f'占位符 {var} 已替换为默认值 {value}，按需改成你自己的{what}')
     if general:
         head.append('插件设置（[General]，是 OpenClash 自身的开关，裸核里没有，仅供参考）：')
         for key, value in general:
@@ -1088,7 +1097,7 @@ def main():
     build.add_argument('--out', required=True)
     build.add_argument('--report', help='write the markdown change report here')
     build.add_argument('--commit-message', help='write the commit message here')
-    build.add_argument('--publish-repo', default='Ayaka-KM/mihomo-presets')
+    build.add_argument('--publish-repo', default='xiaoxizi-lyx/mihomo-presets')
     build.add_argument('--publish-branch', default='dist')
     build.add_argument('--default-branch', default='main')
     args = parser.parse_args()

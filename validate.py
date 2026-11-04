@@ -55,11 +55,19 @@ def strip_placeholders(node):
 
 
 def deep_merge(base, extra):
+    """Merge a fragment the way its header tells users to: mappings key by key, lists
+    combined instead of replaced. Fragment rules go in front (OpenClash's +rules, ahead
+    of the example's MATCH); other lists are appended, so e.g. DDNS's fake-ip-filter+
+    keeps the rule-set:oc-fake-ip-filter entry from config-example.yaml."""
     for key, value in extra.items():
-        if key == 'rules' and isinstance(value, list):
-            base[key] = value + [rule for rule in base.get(key, []) if rule not in value]
-        elif isinstance(value, dict) and isinstance(base.get(key), dict):
-            deep_merge(base[key], value)
+        current = base.get(key)
+        if isinstance(value, dict) and isinstance(current, dict):
+            deep_merge(current, value)
+        elif isinstance(value, list) and isinstance(current, list):
+            if key == 'rules':
+                base[key] = value + [item for item in current if item not in value]
+            else:
+                base[key] = current + [item for item in value if item not in current]
         else:
             base[key] = value
     return base
