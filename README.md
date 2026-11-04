@@ -2,7 +2,7 @@
 
 mihomo-presets：把 OpenClash 的预设同步给裸 mihomo。
 
-OpenClash 根据多年来大量 issue 积累了很多"不踩坑想不到"的预设：Fake-IP 过滤、本地网段、DNS 兜底、嗅探例外等。本仓库的工作流每天从官方仓库提取这些预设，转换成裸 mihomo 能直接用的格式，用官方 mihomo 内核校验通过后发布到 [`dist`](https://github.com/Ayaka-KM/mihomo-presets/tree/dist) 分支。
+OpenClash 根据多年来大量 issue 积累了很多"不踩坑想不到"的预设：Fake-IP 过滤、本地网段、DNS 兜底、嗅探例外等。本仓库的工作流每天从官方仓库提取这些预设，转换成裸 mihomo 能直接用的格式，用官方 mihomo 内核校验通过后发布到 [`dist`](https://github.com/xiaoxizi-lyx/mihomo-presets/tree/dist) 分支。
 
 ## 流程
 
@@ -44,7 +44,7 @@ rule-providers:
     type: http
     behavior: domain
     format: text
-    url: https://raw.githubusercontent.com/Ayaka-KM/mihomo-presets/dist/rules/fake-ip-filter.list
+    url: https://raw.githubusercontent.com/xiaoxizi-lyx/mihomo-presets/dist/rules/fake-ip-filter.list
     path: ./ruleset/oc-fake-ip-filter.list
     interval: 86400
 
@@ -53,7 +53,7 @@ dns:
     - rule-set:oc-fake-ip-filter
 ```
 
-国内直连 `raw.githubusercontent.com` 可能不通，有两种办法：给 rule-provider 加 `proxy: <策略组>`，或者把地址换成 jsDelivr 镜像 `https://testingcf.jsdelivr.net/gh/Ayaka-KM/mihomo-presets@dist/rules/fake-ip-filter.list`。
+国内直连 `raw.githubusercontent.com` 可能不通，有两种办法：给 rule-provider 加 `proxy: <策略组>`，或者把地址换成 jsDelivr 镜像 `https://testingcf.jsdelivr.net/gh/xiaoxizi-lyx/mihomo-presets@dist/rules/fake-ip-filter.list`。
 
 想先审阅再生效的话，可以把 url 里的 `dist` 换成某次提交的 SHA，确认没问题后再手动更新。
 
@@ -86,7 +86,7 @@ python validate.py --mihomo /path/to/mihomo --out out \
 - **运行失败**：GitHub 会发邮件。定时任务的失败通知发给最后修改 cron 那一行的人；如果收不到，在网页上编辑一下这一行再提交即可。
   - 上游改写了相关代码、导致提取不到时，任务会失败并说明是哪一项，此时不会发布任何东西，需要相应更新 `extract.py` 里的匹配规则。
   - 校验失败时，运行摘要里会列出内核报的错误。
-- **关注变化**：订阅 `https://github.com/Ayaka-KM/mihomo-presets/commits/dist.atom`，每次发布都有一条，提交说明里写着改了哪些条目。
+- **关注变化**：订阅 `https://github.com/xiaoxizi-lyx/mihomo-presets/commits/dist.atom`，每次发布都有一条，提交说明里写着改了哪些条目。
 - **定时停用**：公开仓库连续 60 天没有活动时，GitHub 会自动停用定时任务，到 Actions 页面重新启用即可。
 
 ## 局限

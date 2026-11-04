@@ -1088,7 +1088,7 @@ def main():
     build.add_argument('--out', required=True)
     build.add_argument('--report', help='write the markdown change report here')
     build.add_argument('--commit-message', help='write the commit message here')
-    build.add_argument('--publish-repo', default='Ayaka-KM/mihomo-presets')
+    build.add_argument('--publish-repo', default='xiaoxizi-lyx/mihomo-presets')
     build.add_argument('--publish-branch', default='dist')
     build.add_argument('--default-branch', default='main')
     args = parser.parse_args()
