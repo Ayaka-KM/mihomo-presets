@@ -1,0 +1,49 @@
+# OpenClash 官方覆写模块：DDNS
+# 来源：https://github.com/vernesong/OpenClash/blob/dev/luci-app-openclash/root/etc/openclash/overwrite/DDNS
+# 说明：Keep DDNS IP-detection endpoints and DNS provider APIs off the proxy so records never get a proxy exit IP
+# 原注释：
+#   Use exact endpoint hosts only; widening to provider root domains sends whole websites direct.
+#   DDNS_DOMAIN excludes your own DDNS hostname from Fake-IP so LAN clients can reach the router by name.
+# 合并方式（原模块用 OpenClash 的覆写操作符，这里已展开成普通配置）：
+#   rules：放到你已有列表的最前面（原写法 +rules）
+#   dns.fake-ip-filter：追加到你已有列表的末尾（原写法 fake-ip-filter+）
+# 占位符 DDNS_DOMAIN 已替换为默认值 example.invalid，按需改成你自己的值
+# 插件设置（[General]，是 OpenClash 自身的开关，裸核里没有，仅供参考）：
+#   WAN_AC_BLACK_PORTS = 3478,5349
+# 由 mihomo-presets 工作流自动生成，请勿手改；按需取舍请改仓库默认分支上的 config.yaml
+
+rules:
+- DOMAIN,4.ipw.cn,DIRECT
+- DOMAIN,6.ipw.cn,DIRECT
+- DOMAIN,myip.ipip.net,DIRECT
+- DOMAIN,myip4.ipip.net,DIRECT
+- DOMAIN,ddns.oray.com,DIRECT
+- DOMAIN,ip.3322.net,DIRECT
+- DOMAIN,v4.myip.la,DIRECT
+- DOMAIN,v6.myip.la,DIRECT
+- DOMAIN,v4.ip.zxinc.org,DIRECT
+- DOMAIN,v6.ip.zxinc.org,DIRECT
+- DOMAIN,ipv6.ddnspod.com,DIRECT
+- DOMAIN,speed.neu6.edu.cn,DIRECT
+- DOMAIN,v6.ident.me,DIRECT
+- DOMAIN,api.ipify.org,DIRECT
+- DOMAIN,v4.66666.host,DIRECT
+- DOMAIN,v4.666666.host,DIRECT
+- DOMAIN-SUFFIX,aliyuncs.com,DIRECT
+- DOMAIN,dns.myhuaweicloud.com,DIRECT
+- DOMAIN,dnsapi.cn,DIRECT
+- DOMAIN,dnspod.tencentcloudapi.com,DIRECT
+- DOMAIN,dns.jdcloud-api.com,DIRECT
+- DOMAIN,dns.baidubce.com,DIRECT
+- DOMAIN,open.volcengineapi.com,DIRECT
+- DOMAIN,api.west.cn,DIRECT
+- DOMAIN,api.dns.la,DIRECT
+- DOMAIN,checkip.synology.com,DIRECT
+- DOMAIN,checkip.dyndns.org,DIRECT
+- DOMAIN,checkip.dyndns.com,DIRECT
+- DOMAIN,checkip.amazonaws.com,DIRECT
+- DOMAIN,acme-v02.api.letsencrypt.org,DIRECT
+- DOMAIN,acme.zerossl.com,DIRECT
+dns:
+  fake-ip-filter:
+  - +.example.invalid

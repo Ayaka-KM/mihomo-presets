@@ -1,5 +1,37 @@
 # 变化记录
 
+## 2026-11-04 13:12（北京时间）
+
+上游 [vernesong/OpenClash@dev](https://github.com/vernesong/OpenClash/tree/dev)：[`4e668a0`](https://github.com/vernesong/OpenClash/commit/4e668a098f061a936897dd89226b2ae03d0c2444) → [`c5c7bfa`](https://github.com/vernesong/OpenClash/commit/c5c7bfa6cbd675c2ed0ae53ccffdd6bf30321825)
+
+### 上游相关提交
+
+- [`2d55ea0`](https://github.com/vernesong/OpenClash/commit/2d55ea07932de24318741403571531dbe46c034b) 2026-11-02 chore: add DDNS module
+
+### 产出变化
+
+- `README.md`：随上面的变化重新生成
+- `config-example.yaml`：随上面的变化重新生成
+- `fragments/overwrite-BT_PT_Download.yaml`：有改动
+
+<details><summary>diff</summary>
+
+```diff
+--- published
++++ new
+@@ -6,5 +6,5 @@
+ #   rules：追加到你已有列表的末尾（原写法 rules+）
+ #   rules：原写法 rules* 是批量修改操作，没法变成静态片段，已跳过
+-# 占位符 PT_SITE 已替换为默认值 your-pt-site.invalid，按需改成你自己的策略组
++# 占位符 PT_SITE 已替换为默认值 your-pt-site.invalid，按需改成你自己的值
+ # 插件设置（[General]，是 OpenClash 自身的开关，裸核里没有，仅供参考）：
+ #   EN_MODE = redir-host
+```
+
+</details>
+
+- `fragments/overwrite-DDNS.yaml`：新增文件
+
 ## 2026-11-02 03:54（北京时间）
 
 上游 [vernesong/OpenClash@dev](https://github.com/vernesong/OpenClash/tree/dev)：[`91d7370`](https://github.com/vernesong/OpenClash/commit/91d73707a6bcd0f8ec96a57095d72b1b4357cbe7) → [`4e668a0`](https://github.com/vernesong/OpenClash/commit/4e668a098f061a936897dd89226b2ae03d0c2444)

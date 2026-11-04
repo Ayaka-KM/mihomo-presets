@@ -2,19 +2,20 @@
   "upstream": {
     "repository": "vernesong/OpenClash",
     "ref": "dev",
-    "commit": "4e668a098f061a936897dd89226b2ae03d0c2444",
-    "commit_date": "2026-11-02T02:10:20+08:00"
+    "commit": "c5c7bfa6cbd675c2ed0ae53ccffdd6bf30321825",
+    "commit_date": "2026-11-04T05:52:18+08:00"
   },
-  "generated_at": "2026-11-01T19:54:41+00:00",
+  "generated_at": "2026-11-04T05:12:13+00:00",
   "sources": {
     "LICENSE": "bf598f1d704d1a9adbef8eb382b63aee036b500ad11e673f6e5f9e15dda7885d",
-    "luci-app-openclash/root/etc/config/openclash": "7c859b300a58eeabc9d7ace8cfa30901b9eccfc9a947457befc64662380a933e",
+    "luci-app-openclash/root/etc/config/openclash": "e3e0fcde7aff0a9c4b4d4020277b7438d648a3159a343cc05f3b5be783ca6a7b",
     "luci-app-openclash/root/etc/openclash/custom/openclash_custom_fake_filter.list": "399b911ba83af5fe68c5abd95598cf575cbd8a769de686d423de4bdbefa60f04",
     "luci-app-openclash/root/etc/openclash/custom/openclash_custom_fallback_filter.yaml": "be4aa1539424b70afaa32639528560bd4209724bd06ba385f93a668a3e739861",
     "luci-app-openclash/root/etc/openclash/custom/openclash_custom_localnetwork_ipv4.list": "5cfd703c4a23c7108da5fc0c47b58dae021611ee5b6fadef7aacb61a48570dd4",
     "luci-app-openclash/root/etc/openclash/custom/openclash_custom_localnetwork_ipv6.list": "87fd7f0bfd6d4add44c6d68fd473156b295417a0d071869d85a584cb89a7a1d8",
     "luci-app-openclash/root/etc/openclash/custom/openclash_custom_sniffer.yaml": "c186251735e05c74abf472c97d63b1e5ef71cbf14199e3778b532e681998ae6a",
     "luci-app-openclash/root/etc/openclash/overwrite/BT_PT_Download": "7ed1af303b49856e3d177d538858075d55175e1e7886e0e63bc24e205af26d95",
+    "luci-app-openclash/root/etc/openclash/overwrite/DDNS": "a57de9c36d7bd45ee13dcbcd6bc837985ea275d8586dcfde76d234f597459a79",
     "luci-app-openclash/root/etc/openclash/overwrite/Google_Play": "aa0e72abf5f6f1d6bf9cb38a8c586fe2bb38eca0d10944b321f3fb8982480f8b",
     "luci-app-openclash/root/etc/openclash/overwrite/Tailscale": "906ad22722a51e914bb29a8407ab6b965bd4ced33920b4eabad7f0cf20bb0113",
     "luci-app-openclash/root/etc/openclash/overwrite/WiFi_Calling": "aa21917c19ad2af744ff96ca897d27dc8daa212d39afb1ecde14e4b1cf9afe0e",
