@@ -2,10 +2,10 @@
   "upstream": {
     "repository": "vernesong/OpenClash",
     "ref": "dev",
-    "commit": "c5c7bfa6cbd675c2ed0ae53ccffdd6bf30321825",
-    "commit_date": "2026-11-04T05:52:18+08:00"
+    "commit": "c6484df2fb90d782d8578b5f9ad229881d736ef1",
+    "commit_date": "2026-11-06T03:53:46+08:00"
   },
-  "generated_at": "2026-11-04T05:12:13+00:00",
+  "generated_at": "2026-11-06T00:25:31+00:00",
   "sources": {
     "LICENSE": "bf598f1d704d1a9adbef8eb382b63aee036b500ad11e673f6e5f9e15dda7885d",
     "luci-app-openclash/root/etc/config/openclash": "e3e0fcde7aff0a9c4b4d4020277b7438d648a3159a343cc05f3b5be783ca6a7b",
@@ -17,10 +17,10 @@
     "luci-app-openclash/root/etc/openclash/overwrite/BT_PT_Download": "7ed1af303b49856e3d177d538858075d55175e1e7886e0e63bc24e205af26d95",
     "luci-app-openclash/root/etc/openclash/overwrite/DDNS": "a57de9c36d7bd45ee13dcbcd6bc837985ea275d8586dcfde76d234f597459a79",
     "luci-app-openclash/root/etc/openclash/overwrite/Google_Play": "aa0e72abf5f6f1d6bf9cb38a8c586fe2bb38eca0d10944b321f3fb8982480f8b",
-    "luci-app-openclash/root/etc/openclash/overwrite/Tailscale": "906ad22722a51e914bb29a8407ab6b965bd4ced33920b4eabad7f0cf20bb0113",
+    "luci-app-openclash/root/etc/openclash/overwrite/Tailscale": "9ffbb91fbc1f7a79943abd0b2019b9a89ab573375fbab2a772fd81dc21d2bbbe",
     "luci-app-openclash/root/etc/openclash/overwrite/WiFi_Calling": "aa21917c19ad2af744ff96ca897d27dc8daa212d39afb1ecde14e4b1cf9afe0e",
     "luci-app-openclash/root/etc/openclash/overwrite/default": "6b97aa6bb9b3e8665ea1fb7b8e43a776465fad9adedcf2d815223bd202f9b84a",
-    "luci-app-openclash/root/usr/share/openclash/yml_change.sh": "e10974f0cc71fde1fc9949044d580c04638621e8b5db18dae0c1a72943b10b47",
+    "luci-app-openclash/root/usr/share/openclash/yml_change.sh": "e55b92b46c8d42287b624b7056091c3ce926259e26855dd07ad45bf066f8a12f",
     "luci-app-openclash/root/usr/share/openclash/yml_rules_change.sh": "4ec61c869220f07af8c7167b3998d0b56da5c0bfabc137c4615b77b6724a0025"
   },
   "rule_sets": {

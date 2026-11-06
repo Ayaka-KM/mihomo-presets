@@ -1,5 +1,47 @@
 # 变化记录
 
+## 2026-11-06 08:25（北京时间）
+
+上游 [vernesong/OpenClash@dev](https://github.com/vernesong/OpenClash/tree/dev)：[`c5c7bfa`](https://github.com/vernesong/OpenClash/commit/c5c7bfa6cbd675c2ed0ae53ccffdd6bf30321825) → [`c6484df`](https://github.com/vernesong/OpenClash/commit/c6484df2fb90d782d8578b5f9ad229881d736ef1)
+
+### 上游相关提交
+
+- [`c6484df`](https://github.com/vernesong/OpenClash/commit/c6484df2fb90d782d8578b5f9ad229881d736ef1) 2026-11-05 chore: refine
+
+### 产出变化
+
+- `fragments/overwrite-Tailscale.yaml`：有改动
+
+<details><summary>diff</summary>
+
+```diff
+--- published
++++ new
+@@ -1,10 +1,11 @@
+ # OpenClash 官方覆写模块：Tailscale
+ # 来源：https://github.com/vernesong/OpenClash/blob/dev/luci-app-openclash/root/etc/openclash/overwrite/Tailscale
+-# 说明：Tailscale MagicDNS: resolve ts.net names through the Tailscale DNS stub
++# 说明：Tailscale MagicDNS and DERP names bypass the fake-ip pool
+ # 原注释：
+-#   Tailscale MagicDNS: resolve ts.net names through the Tailscale DNS stub, the public DNS does
+-#   not know them. Requires tailscaled to be running.
++#   tailscaled must be running: ts.net only resolves through its stub, and a fake-ip answer
++#   makes the client dial a pool address it cannot reach
+ # 合并方式（原模块用 OpenClash 的覆写操作符，这里已展开成普通配置）：
+ #   dns.nameserver-policy：合并进你已有的映射（原写法 nameserver-policy+）
++#   dns.fake-ip-filter：追加到你已有列表的末尾（原写法 fake-ip-filter+）
+ # 由 mihomo-presets 工作流自动生成，请勿手改；按需取舍请改仓库默认分支上的 config.yaml
+ 
+@@ -13,2 +14,5 @@
+     +.ts.net:
+     - 100.100.100.100#DIRECT
++  fake-ip-filter:
++  - +.tailscale.com
++  - +.ts.net
+```
+
+</details>
+
 ## 2026-11-04 13:12（北京时间）
 
 上游 [vernesong/OpenClash@dev](https://github.com/vernesong/OpenClash/tree/dev)：[`4e668a0`](https://github.com/vernesong/OpenClash/commit/4e668a098f061a936897dd89226b2ae03d0c2444) → [`c5c7bfa`](https://github.com/vernesong/OpenClash/commit/c5c7bfa6cbd675c2ed0ae53ccffdd6bf30321825)
